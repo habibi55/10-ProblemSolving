@@ -5,11 +5,14 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject littleBoxPrefab;
 
+    private PlayerController player;
+
     private void Start()
     {
+        player = FindObjectOfType<PlayerController>();
         RandomSpawnBox();
     }
-
+    
     private void RandomSpawnBox()
     {
         int numberOfBox = Random.Range(1, 10);
@@ -18,6 +21,12 @@ public class SpawnManager : MonoBehaviour
         {
             Vector2 randomPosition = RandomizePosition();
 
+            while (randomPosition.x <= player.transform.position.x + 0.757f ||
+                   randomPosition.y <= player.transform.position.y + 0.757f)
+            {
+                randomPosition = RandomizePosition();
+            }
+            
             Instantiate(littleBoxPrefab, randomPosition, littleBoxPrefab.transform.rotation);
         }
     }
@@ -26,7 +35,9 @@ public class SpawnManager : MonoBehaviour
     {
         float randomXAxis = Random.Range(-2.75f, 2.75f);
         float randomYAxis = Random.Range(-2.75f, 2.75f);
-
-        return new Vector2(randomXAxis, randomYAxis);
+        
+        Vector2 spawnPosition = new Vector2(randomXAxis, randomYAxis);
+        
+        return spawnPosition;
     }
 }
