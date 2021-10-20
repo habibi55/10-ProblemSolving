@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    private static UIManager _instance = null;
+    private static UIManager _instance;
 
     public static UIManager Instance
     {
@@ -25,17 +22,17 @@ public class UIManager : MonoBehaviour
             return _instance;
         }
     }
-    public Text UIScoreText;
-    public Image GameOverPanel;
-    public Button MainMenuButton;
-    public Button RestartButton;
+    public Text uiScoreText;
+    public Image gameOverPanel;
+    public Button mainMenuButton;
+    public Button restartButton;
 
     private void Start()
     {
-        MainMenuButton.onClick.AddListener(() =>
+        mainMenuButton.onClick.AddListener(() =>
             Debug.Log("Back to the PAST!!"));
         
-        RestartButton.onClick.AddListener(() =>
+        restartButton.onClick.AddListener(() =>
             GameManager.Instance.GameOver());
         
         ChangeScore();
@@ -43,11 +40,11 @@ public class UIManager : MonoBehaviour
 
     public void SetGameOverPanelActive()
     {
-        GameOverPanel.gameObject.SetActive(true);
+        gameOverPanel.gameObject.SetActive(true);
     }
 
     public void ChangeScore()
     {
-        UIScoreText.text = "Score: " + ScoreManager.Instance.Score.ToString("0");
+        uiScoreText.text = "Score: " + ScoreManager.Instance.score.ToString("0");
     }
 }

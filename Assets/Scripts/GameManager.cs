@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,12 +23,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private float scoreLimit = 100f;
-    public bool isGameOver = false;
+    public bool isGameOver;
+    public List<GameObject> managers;
 
     private void Update()
     {
-        if (ScoreManager.Instance.Score >= scoreLimit)
+        if (ScoreManager.Instance.CheckScore())
         {
             isGameOver = true;
             SoundManager.Instance.PlayGameOver();
@@ -40,11 +38,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             RestartGame();
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            
         }
     }
 

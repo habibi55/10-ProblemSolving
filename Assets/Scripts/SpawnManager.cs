@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,15 +23,14 @@ public class SpawnManager : MonoBehaviour
         }
     }
     
-    public GameObject littleBoxPrefab;
+    public GameObject enemyPrefab;
 
-    private PlayerController player;
-    private List<EnemyController> currentActiveEnemy = new List<EnemyController>();
-    private float nonSpawnableArea = 1f;
+    private PlayerController _player;
+    private List<EnemyController> _currentActiveEnemy = new List<EnemyController>();
 
     private void Awake()
     {
-        player = FindObjectOfType<PlayerController>();
+        _player = FindObjectOfType<PlayerController>();
     }
 
     private void Start()
@@ -54,17 +51,17 @@ public class SpawnManager : MonoBehaviour
         {
             Vector2 randomPosition = RandomizePosition();
 
-            if (randomPosition.x.Equals(player.transform.position.x) &&
-                randomPosition.y.Equals(player.transform.position.y))
+            if (randomPosition.x.Equals(_player.transform.position.x) &&
+                randomPosition.y.Equals(_player.transform.position.y))
             {
                 randomPosition = RandomizePosition();
             }
 
             EnemyController enemy = 
-                Instantiate(littleBoxPrefab, randomPosition, 
-                    littleBoxPrefab.transform.rotation).GetComponent<EnemyController>();
+                Instantiate(enemyPrefab, randomPosition, 
+                    enemyPrefab.transform.rotation).GetComponent<EnemyController>();
             
-            currentActiveEnemy.Add(enemy);
+            _currentActiveEnemy.Add(enemy);
         }
     }
 

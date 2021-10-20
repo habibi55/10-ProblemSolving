@@ -5,31 +5,34 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameplayProblem1.unity
     guid: 4c793e794449cbc7b9ed3ad8c9d58613
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameplayProblem2.unity
     guid: 6b83731e2d65bc25eb1ddfbc37b503ba
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameplayProblem3.unity
     guid: 401df334372351bf68665c1c3f46cb30
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameplayProblem4.unity
     guid: 00b0e6040bd5ae45ebc1afe15966a490
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameplayProblem5.unity
     guid: 981836e34a4affb9e970207cc713afb8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameplayProblem6.unity
     guid: 73439b09d6f5fada3ac1f711c1493b63
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameplayProblem7.unity
     guid: 1adbdbba2f7797a5e894d291bf76e071
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameplayProblem8.unity
     guid: 85bea8a4093db6151b7c5f82a513e010
   - enabled: 1
     path: Assets/Scenes/GameplayProblem9.unity
     guid: 3d0f4878d81ea03e38e867da7eb0766f
+  - enabled: 1
+    path: Assets/Scenes/GameplayProblem10.unity
+    guid: dbb2ca153e6c9a60180d07e4cb0935d5
   m_configObjects: {}

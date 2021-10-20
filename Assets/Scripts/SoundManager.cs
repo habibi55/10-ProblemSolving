@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private static SoundManager _instance = null;
+    private static SoundManager _instance;
     public static SoundManager Instance
     {
         get
@@ -24,28 +21,28 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private AudioSource soundSource;
+    private AudioSource _soundSource;
     public AudioClip enemyDeath;
     public AudioClip milestonePoint;
     public AudioClip gameOver;
 
     private void Awake()
     {
-        soundSource = GetComponent<AudioSource>();
+        _soundSource = GetComponent<AudioSource>();
     }
 
     public void PlayEnemyDeath()
     {
-        soundSource.PlayOneShot(enemyDeath);
+        _soundSource.PlayOneShot(enemyDeath);
     }
     
     public void PlayMilestone()
     {
-        soundSource.PlayOneShot(milestonePoint);
+        _soundSource.PlayOneShot(milestonePoint);
     }
     
     public void PlayGameOver()
     {
-        soundSource.PlayOneShot(gameOver);
+        _soundSource.PlayOneShot(gameOver);
     }
 }

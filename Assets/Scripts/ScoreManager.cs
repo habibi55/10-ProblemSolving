@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    private static ScoreManager _instance = null;
+    private static ScoreManager _instance;
     public static ScoreManager Instance
     {
         get
@@ -22,18 +21,24 @@ public class ScoreManager : MonoBehaviour
         }
     }
     
-    public float Score = 0f;
-    private float scoreHighlightRange = 10f;
-    private float lastScoreHightlight = 0f;
+    public float score;
+    private float _scoreHighlightRange = 10f;
+    private float _lastScoreHightlight;
+    private float _scoreLimit = 100f;
 
     public void IncreaseCurrentScore(float value)
     {
-        Score += value;
+        score += value;
         
-        if (Score - lastScoreHightlight >= scoreHighlightRange)
+        if (score - _lastScoreHightlight >= _scoreHighlightRange)
         {
             SoundManager.Instance.PlayMilestone();
-            lastScoreHightlight += scoreHighlightRange;
+            _lastScoreHightlight += _scoreHighlightRange;
         }
+    }
+
+    public bool CheckScore()
+    {
+        return score >= _scoreLimit;
     }
 }

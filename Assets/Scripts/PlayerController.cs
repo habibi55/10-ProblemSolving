@@ -1,17 +1,16 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D playerRigidbody;
+    private Rigidbody2D _playerRigidbody;
     private float playerSpeed = 10f;
 
-    private float horizontalAxis;
-    private float verticalAxis;
+    private float _horizontalAxis;
+    private float _verticalAxis;
 
     private void Start()
     {
-        playerRigidbody = GetComponent<Rigidbody2D>();
+        _playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -30,9 +29,9 @@ public class PlayerController : MonoBehaviour
     // menggerakkan pemain ke arah vector (1,1)
     private void MoveTo()
     {
-        Vector2 moveDirection = new Vector2(horizontalAxis, verticalAxis);
+        Vector2 moveDirection = new Vector2(_horizontalAxis, _verticalAxis);
 
-        playerRigidbody.position = Vector2.MoveTowards(transform.position, 
+        _playerRigidbody.position = Vector2.MoveTowards(transform.position, 
             moveDirection, playerSpeed * Time.fixedDeltaTime);
     }
 
@@ -40,14 +39,15 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
-        horizontalAxis = currentMousePosition.x;
-        verticalAxis = currentMousePosition.y;
+        _horizontalAxis = currentMousePosition.x;
+        _verticalAxis = currentMousePosition.y;
     }
 
     public void ChangeSize()
     {
-        float addedScale = transform.localScale.x * 0.015f;
-        Vector2 newSize = new Vector2(transform.localScale.x + addedScale, transform.localScale.y + addedScale);
+        Vector2 playerScale = transform.localScale;
+        float addedScale = playerScale.x * 0.015f;
+        Vector2 newSize = new Vector2(playerScale.x + addedScale, playerScale.y + addedScale);
             transform.localScale = newSize;
     }
 }
