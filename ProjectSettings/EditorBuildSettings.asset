@@ -23,7 +23,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/GameplayProblem6.unity
     guid: 73439b09d6f5fada3ac1f711c1493b63
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameplayProblem7.unity
     guid: 1adbdbba2f7797a5e894d291bf76e071
+  - enabled: 1
+    path: Assets/Scenes/GameplayProblem8.unity
+    guid: 85bea8a4093db6151b7c5f82a513e010
   m_configObjects: {}
