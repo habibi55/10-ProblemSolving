@@ -16,7 +16,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        GetAxis();
+        if (Input.GetMouseButtonDown(0))
+        {
+            GetAxis();
+        }
     }
 
     private void FixedUpdate()
@@ -27,16 +30,17 @@ public class PlayerController : MonoBehaviour
     // menggerakkan pemain ke arah vector (1,1)
     private void MoveTo()
     {
-        Vector2 playerMovement = new Vector2(horizontalAxis, verticalAxis);
+        Vector2 moveDirection = new Vector2(horizontalAxis, verticalAxis);
 
-        playerRigidbody.velocity = playerMovement * playerSpeed;
+        playerRigidbody.position = Vector2.MoveTowards(transform.position, 
+            moveDirection, playerSpeed * Time.fixedDeltaTime);
     }
 
     private void GetAxis()
     {
-        horizontalAxis = Input.GetAxis("Horizontal");
-        verticalAxis = Input.GetAxis("Vertical");
+        Vector2 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
-        Debug.Log(horizontalAxis + "," + verticalAxis);
+        horizontalAxis = currentMousePosition.x;
+        verticalAxis = currentMousePosition.y;
     }
 }

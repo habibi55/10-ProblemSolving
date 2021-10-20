@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/GameplayProblem3.unity
     guid: 401df334372351bf68665c1c3f46cb30
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameplayProblem4.unity
     guid: 00b0e6040bd5ae45ebc1afe15966a490
+  - enabled: 1
+    path: Assets/Scenes/GameplayProblem5.unity
+    guid: 981836e34a4affb9e970207cc713afb8
   m_configObjects: {}
