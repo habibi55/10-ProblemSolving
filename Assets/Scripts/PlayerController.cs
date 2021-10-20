@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRigidbody;
     private float playerSpeed = 10f;
+    private bool isLaunched = false;
 
     private void Start()
     {
@@ -21,8 +19,16 @@ public class PlayerController : MonoBehaviour
     // menggerakkan pemain ke arah vector (1,1)
     private void MoveTo()
     {
-        Vector2 velocity = Vector2.one * playerSpeed;
-        Debug.Log(velocity.magnitude);
-        playerRigidbody.velocity = velocity;
+        if (isLaunched)
+        {
+            return;
+        }
+
+        float yDirection = Random.Range(-1.01f, 1.01f);
+        Vector2 velocity = new Vector2(1f, yDirection) * playerSpeed;
+        
+        playerRigidbody.AddForce(velocity, ForceMode2D.Impulse);
+
+        isLaunched = true;
     }
 }
