@@ -43,4 +43,11 @@ public class PlayerController : MonoBehaviour
         horizontalAxis = currentMousePosition.x;
         verticalAxis = currentMousePosition.y;
     }
+
+    public void ChangeSize()
+    {
+        float addedScale = transform.localScale.x * 0.015f;
+        Vector2 newSize = new Vector2(transform.localScale.x + addedScale, transform.localScale.y + addedScale);
+            transform.localScale = newSize;
+    }
 }

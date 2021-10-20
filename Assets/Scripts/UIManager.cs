@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,9 +26,28 @@ public class UIManager : MonoBehaviour
         }
     }
     public Text UIScoreText;
+    public Image GameOverPanel;
+    public Button MainMenuButton;
+    public Button RestartButton;
+
+    private void Start()
+    {
+        MainMenuButton.onClick.AddListener(() =>
+            Debug.Log("Back to the PAST!!"));
+        
+        RestartButton.onClick.AddListener(() =>
+            GameManager.Instance.GameOver());
+        
+        ChangeScore();
+    }
+
+    public void SetGameOverPanelActive()
+    {
+        GameOverPanel.gameObject.SetActive(true);
+    }
 
     public void ChangeScore()
     {
-        UIScoreText.text = "Score: " + ScoreManager.Score.ToString("0");
+        UIScoreText.text = "Score: " + ScoreManager.Instance.Score.ToString("0");
     }
 }

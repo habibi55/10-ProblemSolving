@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     private BoxCollider2D enemyCollider;
     private SpriteRenderer enemyRenderer;
 
-    private void Start()
+    private void Awake()
     {
         enemyCollider = GetComponent<BoxCollider2D>();
         enemyRenderer = GetComponent<SpriteRenderer>();
@@ -19,11 +19,15 @@ public class EnemyController : MonoBehaviour
         if (!other.gameObject.CompareTag("Player")) return;
         
         // tambahkan score
-        ScoreManager.Score += scorePoint;
-        // ubah text score
-        UIManager.Instance.ChangeScore();
+        ScoreManager.Instance.IncreaseCurrentScore(scorePoint);
+        // ubah ukuran player
+        other.GetComponent<PlayerController>().ChangeSize();
         // non aktifkan semua komponen kecuali game object dan script
         ActivateEnemy(false);
+        // memainkan audio
+        SoundManager.Instance.PlayEnemyDeath();
+        // ubah text score
+        UIManager.Instance.ChangeScore();
         // jalankan coroutine
         StartCoroutine(DelaySpawn(3f));
     }

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
     private static SpawnManager _instance = null;
-
     public static SpawnManager Instance
     {
         get
@@ -27,25 +28,34 @@ public class SpawnManager : MonoBehaviour
     public GameObject littleBoxPrefab;
 
     private PlayerController player;
-
     private List<EnemyController> currentActiveEnemy = new List<EnemyController>();
+    private float nonSpawnableArea = 1f;
+
+    private void Awake()
+    {
+        player = FindObjectOfType<PlayerController>();
+    }
 
     private void Start()
     {
-        player = FindObjectOfType<PlayerController>();
         RandomSpawnEnemy();
     }
 
     private void RandomSpawnEnemy()
     {
-        int numberOfBox = Random.Range(1, 10);
+        if (GameManager.Instance.isGameOver)
+        {
+            return;
+        }
+
+        int numberOfBox = Random.Range(5, 10);
 
         for (int i = 0; i < numberOfBox; i++)
         {
             Vector2 randomPosition = RandomizePosition();
 
-            while (randomPosition.x <= player.transform.position.x + 0.757f ||
-                   randomPosition.y <= player.transform.position.y + 0.757f)
+            if (randomPosition.x.Equals(player.transform.position.x) &&
+                randomPosition.y.Equals(player.transform.position.y))
             {
                 randomPosition = RandomizePosition();
             }
@@ -60,8 +70,8 @@ public class SpawnManager : MonoBehaviour
 
     public Vector2 RandomizePosition()
     {
-        float randomXAxis = Random.Range(-2.75f, 2.75f);
-        float randomYAxis = Random.Range(-2.75f, 2.75f);
+        float randomXAxis = Random.Range(-3f, 3f);
+        float randomYAxis = Random.Range(-3f, 3f);
         
         Vector2 spawnPosition = new Vector2(randomXAxis, randomYAxis);
         
